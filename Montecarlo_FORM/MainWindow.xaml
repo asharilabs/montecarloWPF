@@ -1,0 +1,103 @@
+﻿<Window x:Class="Montecarlo_FORM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Montecarlo_FORM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DockPanel>
+            <GroupBox 
+                Header="Data Historis" 
+                HorizontalAlignment="Left" 
+                Height="399" Margin="10,10,0,0" 
+                VerticalAlignment="Top" Width="218">
+
+                <StackPanel Orientation="Vertical">
+                    <DataGrid x:Name="dgv_datahistoris" 
+                      HorizontalAlignment="Left" 
+                      Height="230" Margin="4,6,0,0" 
+                      VerticalAlignment="Top" Width="198"
+                      AutoGenerateColumns="False"
+                      SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Minggu ke" Binding="{Binding MingguKe}"/>
+                            <DataGridTextColumn Header="Terjual" Binding="{Binding FrekuensiTerjual}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Input Data Faktual"/>
+                    <DockPanel>
+                        <Label Content="Minggu ke" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="txtbox_mingguke" IsReadOnly="True"
+                             Width="auto"
+                             TextAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel
+                    Margin="0,10,0,5">
+                        <Label Content="Data Faktual" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="txtbox_frekuensi" 
+                             Margin="0,0,0,0"
+                             IsReadOnly="False"
+                             Width="auto"
+                             TextAlignment="Center"/>
+                    </DockPanel>
+                    <Button
+                        x:Name="btn_inputdata"
+                        Margin="15,15,15,15"
+                        VerticalAlignment="Bottom"
+                        Content="Input Data Baru"
+                        Click="btn_inputdata_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Header="MONTECARLO" Width="310" Height="250"
+                Margin="10,20,10,10">
+                <DataGrid x:Name="dgv_montecarlo"
+                          AutoGenerateColumns="False"
+                    Margin="0,10,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Perm." FontSize="12" Binding="{Binding Kategori}"/>
+                        <DataGridTextColumn Header="Frek." FontSize="12" Binding="{Binding Frekuensi}"/>
+                        <DataGridTextColumn Header="Prob." FontSize="12" Binding="{Binding Prob}"/>
+                        <DataGridTextColumn Header="Prob. Kum." FontSize="12" Binding="{Binding KumProb}"/>
+                        <DataGridTextColumn Header="Interval" FontSize="12" Binding="{Binding Interval}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <GroupBox
+                HorizontalAlignment="Right"
+                Header="Prediksi"
+                Height="399" Margin="0,10,10,0" 
+                VerticalAlignment="Top" Width="218">
+                <StackPanel Orientation="Vertical"
+                            Margin="0,5,0,0">
+                    <DockPanel>
+                        <Label Content="Count"/>
+                        <TextBox x:Name="txtbox_countOfForecast"
+                                 Margin="30,0,30,0"/>
+                    </DockPanel>
+                    <Button Content="Generate"
+                            Margin="10,10,10,10"
+                            x:Name="btn_generateForecast"
+                            Click="btn_generateForecast_Click"/>
+                    <DataGrid x:Name="dgv_hasilForecast"
+                              VerticalScrollBarVisibility="Visible"
+                              Height="200"
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Minggu ke-"
+                                                Binding="{Binding MingguKe}"/>
+                            <DataGridTextColumn Header="Random"
+                                                Binding="{Binding Random}"/>
+                            <DataGridTextColumn Header="Banyak Permintaan"
+                                                Binding="{Binding Taksiran}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </GroupBox>
+        </DockPanel>
+    </Grid>
+</Window>
